@@ -263,6 +263,7 @@ def learn(
     dfdx = 2. * np.mean((prediction - true_price) * area)
     new_slope = slope - learning_rate * dfdx
     return new_slope
+```
 
 ---
 <!-- .slide style="text-align:left;font-size:80%;" -->
