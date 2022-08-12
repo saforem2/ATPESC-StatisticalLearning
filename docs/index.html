@@ -112,7 +112,7 @@ Sam Foreman <!-- .element: style="font-size: 1.25em; font-weight: 600; color: #E
 
 <div class="reset-margin" style="position: absolute; left: 172.79999999999998px; top: 560px; height: 70px; min-height: 70px; width: 96px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
 
-<a href="https://www.github.com/saforem2/ATPESC-ML-Talk" ><i class="fab fa-github fa-1x" style="font-size:1.5em;" alt="`fas:Github`" ></i>
+<a href="https://www.github.com/saforem2/ATPESC-StatisticalLearning" ><i class="fab fa-github fa-1x" style="font-size:1.5em;" alt="`fas:Github`" ></i>
 </div>
 
 <div class="reset-margin" style="position: absolute; left: 96px; top: 560px; height: 70px; min-height: 70px; width: 96px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
@@ -126,8 +126,6 @@ Sam Foreman <!-- .element: style="font-size: 1.25em; font-weight: 600; color: #E
 </div>
 </script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left; text-size: 100%; line-height: 1.5em" -->
 # First Steps
-
-<div style="line-height:2.5em!important;">
 
 1. Login and submit an interactive job (on Polaris):
   ```shell
@@ -145,8 +143,6 @@ Sam Foreman <!-- .element: style="font-size: 1.25em; font-weight: 600; color: #E
   $ git clone https://github.com/argonne-lcf/ATPESC_MachineLearning
   $ cd ATPESC_MachineLearning/00_statisticalLearning/
   ```
-
-</div>
 </script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left; text-size: 70%" -->
 
 # Setup / Install
@@ -180,10 +176,7 @@ Sam Foreman <!-- .element: style="font-size: 1.25em; font-weight: 600; color: #E
 <li>To make sure that these packages are also <code>import</code>-able from our Jupyter notebook, we create a <code>venv</code> 
 we can perform a local (editable) install from within a <code>venv</code>.</li>
 </ul>
-</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left; text-size: 70%" -->
-
-## Jupyter Notebooks
-
+</aside></script></section><section  data-markdown><script type="text/template"># Jupyter Notebooks
 1. Load `base` conda environment (as a starting point):
   ```shell
   $ module load conda/2022-07-19  # from our interactive job
@@ -208,9 +201,7 @@ we can perform a local (editable) install from within a <code>venv</code>.</li>
   $ hostname
   x3002c0s31b0n0
   ```
-</script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left; text-size: 60%" -->
-
-## Port Forwarding
+</script></section><section  data-markdown><script type="text/template">## Port Forwarding
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/port-forwarding.svg" alt="" align="stretch"></img></p>
 
@@ -348,7 +339,7 @@ def evaluate(slope, area, true_price):
 ## Linear Regression
 - Recall our prediction is given by `$\textcolor{#63ff5b}{y} = \textcolor{#F92672}{m}\cdot \textcolor{#00CCFF}{x}$`, where:
   - `$\textcolor{#F92672}{m}$` is the <span style="color:#F92672;">**slope**</span> (randomly initialized)
-  - `$\textcolor{#FFFF00}{\hat{y}}$` is the <span style="color:#FFFF00">true price</span>
+  - `$\textcolor{#FD971F}{\hat{y}}$` is the <span style="color:#FD971F">true price</span>
   - `$\textcolor{#63ff5b}{y}$` is the <span style="color:#63ff5b;">predicted price</span>
   - `$\textcolor{#00CCFF}{x}$` is the <span style="color:#00CCFF;">input area</span>
   - `$\textcolor{#AE81FF}{\alpha}$` is the <span style="color:#AE81FF">learning rate</span>
@@ -357,10 +348,10 @@ def evaluate(slope, area, true_price):
 - We update our slope `$\textcolor{#f92672}{m}$` using the update policy:
   `$$
   \begin{align}
-  \textcolor{#F92672}{m} &\gets  \textcolor{#F92672}{m} - \textcolor{#AE81FF}{\alpha} \,\nabla\, \delta\left(\textcolor{#63ff5b}{y}, \textcolor{#FFFF00}{\hat{y}}\right) \\
-  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \nabla\left\{\sum_{i=1}^{n} \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FFFF00}{\hat{y}}\right)^{2}\right\} \\
-  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FFFF00}{\hat{y}}\right)\cdot \frac{\partial \textcolor{#63ff5b}{y_{i}}}{\partial \textcolor{#F92672}{m}} \\
-  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n}\sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FFFF00}{\hat{y}}\right)\cdot \textcolor{#00CCFF}{x_{i}}
+  \textcolor{#F92672}{m} &\gets  \textcolor{#F92672}{m} - \textcolor{#AE81FF}{\alpha} \,\nabla\, \delta\left(\textcolor{#63ff5b}{y}, \textcolor{#FD971F}{\hat{y}}\right) \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \nabla\left\{\sum_{i=1}^{n} \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)^{2}\right\} \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)\cdot \frac{\partial \textcolor{#63ff5b}{y_{i}}}{\partial \textcolor{#F92672}{m}} \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n}\sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)\cdot \textcolor{#00CCFF}{x_{i}}
   \end{align}
   $$`
 </script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left" -->
@@ -395,18 +386,14 @@ def learn(
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left; font-size: 150%" -->
 # <span style="border-bottom:8px solid #F92672;">Data Clustering</span>
-</script></section><section  data-markdown><script type="text/template"># Data Clustering</span>
+</script></section><section  data-markdown><script type="text/template"># Data Clustering
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/clusters2d.svg" alt="" align="stretch"></img></p>
 
-
-</div>
 </script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left; font-size: 80%" -->
 
-### Data Clustering
+## Data Clustering
 
-<div align="center" style="font-size:0.7em;">
-	
 <div class="callout callout-color1">
 <div class="callout-title">
 <div class="callout-icon">
@@ -425,8 +412,6 @@ Normalization
 Always a good idea to normalize your data
 
 </div>
-</div>
-
 </div>
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/clusters-normalized.svg" alt="" ></img></p>
@@ -501,7 +486,7 @@ Repeat until convergence
 
 <img src="https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step4.svg" width="50%"> <!-- .element: align="stretch" -->
 </script></section><section  data-markdown><script type="text/template">
-# <span style="border-bottom:8px solid #FFFF00">Hands-On / Live Demo</span>
+# <span style="border-bottom:8px solid #FD971F">Hands-On / Live Demo</span>
 
 - 📊 [slides](https://saforem2.github.io/ATPESC-StatisticalLearning)
 - [<i class="fab fa-github fa-1x" alt="`fas:Github`"></i> `argonne-lcf/ATPESC_MachineLearning/`](https://github.com/argonne-lcf/ATPESC_MachineLearning) <!-- .element: style="color: font-weight" -->
@@ -576,7 +561,7 @@ Repeat until convergence
 .reveal h3,
 .reveal h4 {
     margin: var(--r-heading-margin);
-    color: var(--r-heading-color);
+    color: #E0E0E0;
     font-family: var(--r-heading-font);
     line-height: var(--r-heading-line-height);
     word-spacing: var(--r-heading-word-spacing);
@@ -766,7 +751,7 @@ Repeat until convergence
     color: #63FF51;
 }
 #yellow {
-    color: #FFFF00;
+    color: #FD971F;
 }
 #lightpink {
     color: #E64980;
@@ -802,7 +787,7 @@ Repeat until convergence
 #mark {
     margin: auto;
     padding: auto;
-    background-color: #FFFF00;
+    background-color: #FD971F;
     color: #1c1c1c;
     font-weight: 700;
     border-radius: 7px;
