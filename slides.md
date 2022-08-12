@@ -1,65 +1,53 @@
 ---
 title: "Statistical Learning"
 center: true
-width: 960
-height: 700
-margin: 0.08
 theme: black
 transition: slide
 preloadIframes: false
 highlightTheme: 'monokai'
-revealOptions:
-   transition: 'slide'
-css: 
-- custom/graze-pro.css
-- custom/font-awesome-animation-min.css
-- css/animate.min.css
-- https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
 ---
 
-<!-- .slide style="vertical-align:bottom!important;" -->
+<!-- .slide style="vertical-align:bottom;" -->
 
 <grid drop="5 20" drag="90 25" style="font-family:'graze-pro';background-color:#303030;border-radius:8px!important;padding:auto;align:center;font-size=0.8em!important;">
 # Statistical Learning<!-- .element style="color:#F8F8F8;" -->
 
-#### ATPESC 2022 <!-- .element style="color:#757575;font-weight:600;font-family:JuliaMono" -->
+#### [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> ATPESC ML 2022](https://github.com/argonne-lcf/ATPESC_MachineLearning) <!-- .element style="color:font-weight:600" -->
 </grid>
 
-<grid drop="0 55" drag="100 30" style="line-height:0.6em;" align="top">
-Sam Foreman <!-- .element style="font-size:1.5em;font-weight:600;color:#E0E0E0!important;font-family:JuliaMono" -->
+<grid drop="0 50" drag="100 25" style="line-height:0.6em;" align="top">
+Sam Foreman <!-- .element style="font-size:1.25em;font-weight:600;color:#E0E0E0!important" -->
+<br><span style="color:#666666;font-size:0.5em;line-height:0.8em;">2022-08-12</span>
 
-2022-08-12 <!-- .element style="font-family:'JuliaMono'; font-size:0.8em;color:#505050;vertical-align:bottom;padding-top:5%;font-weight:400;" -->
 </grid>
 
-<grid drop="2 80" drag="10 10" align="bottom" style="">
+<grid drop="2 80" drag="10 10" align="bottom">
 <a href="https://www.samforeman.me"><i class="fas fa-home fa-1x" style="font-size:1.5em;" alt="`fas:Home`"/> </a>
 </grid>
 
-<grid drop="18 80" drag="10 10" align="bottom" style="">
-<a href="https://www.github.com/saforem2/ATPESC-ML-Talk" ><i class="fab fa-github fa-1x" style="font-size:1.5em;" alt="`fas:Github`" />
+<grid drop="18 80" drag="10 10" align="bottom">
+<a href="https://www.github.com/saforem2/ATPESC-StatisticalLearning" ><i class="fab fa-github fa-1x" style="font-size:1.5em;" alt="`fas:Github`" />
 </grid>
 
-<grid drop="10 80" drag="10 10" align="bottom" style="">
+<grid drop="10 80" drag="10 10" align="bottom">
 <a href="https://www.twitter.com/saforem2"><i class="fab fa-twitter fa-1x" style="width=100%;align=right;font-size:1.5em;color;#00CCFF!important;" alt="`fas:Twitter`" /></a>
 </grid>
 
-<grid drop="70 75" drag="30 20" align="center" style="">
-<a href="https://anl.gov"><img src="https://raw.githubusercontent.com/saforem2/anl-job-talk/main/docs/assets/anl.svg" width="100%" alt="Argonne National Laboratory" /></a>
+<grid drop="55 75" drag="40 20" align="left">
+<img src="https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/atpesc.png" align="right" alt="ATPESC: 2022-08-12">
 </grid>
 
 ---
-<!-- .slide style="text-align:left;text-size:100%;line-height:1.5em" -->
-# First Steps
 
-<div style="line-height:2.5em!important;">
+# First Steps
 
 1. Login and submit an interactive job (on Polaris):
   ```shell
   $ ssh <username>@polaris
   $ # ATPESC queue: -q R313446 (in general: -q prod)
-  $ qsub -I -q R313446 -l select=32 -l walltime=01:00:00
+  $ qsub -A ATPESC2022 -q R313446 -l select=1 -l walltime=01:00:00 -I
   ```
-  this will launch a job with $32$ ranks ($\times 4 = 128$ GPUs) for $1$ hour [(more on queues / scheduling)](https://argonne-lcf.github.io/user-guides/polaris/queueing-and-running-jobs/job-and-queue-scheduling/)
+  this will launch a job with $1$ rank ($\times 4$ GPUs) for $1$ hour [(more on queues / scheduling)](https://argonne-lcf.github.io/user-guides/polaris/queueing-and-running-jobs/job-and-queue-scheduling/)
 
 2. From the interactive job, clone the github repo:<br>
   [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> ATPESC_MachineLearning](https://github.com/argonne-lcf/ATPESC_MachineLearning)
@@ -69,8 +57,6 @@ Sam Foreman <!-- .element style="font-size:1.5em;font-weight:600;color:#E0E0E0!i
   $ git clone https://github.com/argonne-lcf/ATPESC_MachineLearning
   $ cd ATPESC_MachineLearning/00_statisticalLearning/
   ```
-
-</div>
 
 ---
 <!-- .slide style="text-align:left;text-size:70%;" -->
@@ -87,6 +73,7 @@ Sam Foreman <!-- .element style="font-size:1.5em;font-weight:600;color:#E0E0E0!i
       └── 📁 utils/
           └── 🐍 plots.py
   ```
+<br>
 
 <div id="note">
 
@@ -106,10 +93,7 @@ note:
   we can perform a local (editable) install from within a `venv`.
 
 ---
-<!-- .slide style="text-align:left;text-size:70%;" -->
-
-## Jupyter Notebooks
-
+# Jupyter Notebooks
 1. Load `base` conda environment (as a starting point):
   ```shell
   $ module load conda/2022-07-19  # from our interactive job
@@ -136,11 +120,9 @@ note:
   ```
 
 ---
-<!-- .slide style="text-align:left;text-size:60%;" -->
-
 ## Port Forwarding
 
-![](work/talks/ATPESC/assets/port-forwarding.svg) <!-- .element align="stretch" -->
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/port-forwarding.svg) <!-- .element align="stretch" -->
 
 
 ---
@@ -166,19 +148,19 @@ Connect `localhost` to compute node running Jupyter.
 > [!warning] Warning!
 > Only **one** port (`8899` in this example) can be used at a time.
 > Because of this, if someone is already using the port you try and specify, your connection **WILL NOT WORK**
-> To remedy this, choose a different port (e.g. `8891`, `8873`, etc.)
+> To remedy this, (randomly?) choose a different port (e.g. `8891`, `8873`, etc.)
 
 </div>
 
 ---
 <!-- .slide style="text-align:left;" -->
 
-# <span style="border-bottom:8px solid #00CCFF;"> Now, on with the show...</span>
+# <span style="border-bottom:8px solid #00CCFF;"> Linear Regression</span>
 
 ---
 <!-- .slide style="text-align:left;" -->
 
-# Line Fitting
+# <span style="border-bottom:8px solid #00CCFF;">Line Fitting</span>
 
 Linear regression via [_stochastic gradient descent_](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) (SGD).
 
@@ -190,7 +172,6 @@ Linear regression via [_stochastic gradient descent_](https://en.wikipedia.org/w
   data_file = Path(DATA_DIR).joinpath('realestate_train.csv')
   df = pd.read_csv(data_file)
   ```
-
 2. Extract total home square footage
   ```python
   area = sum([
@@ -200,14 +181,15 @@ Linear regression via [_stochastic gradient descent_](https://en.wikipedia.org/w
   ])
   area.name = 'SqFt'
   price = df['SalePrice']
-  plot = sns.jointplot(x=area, y=price, alpha=0.33)
   ```
 
 ---
 
-Sale Price vs. Square Footage
+# Sale Price vs. Square Footage
 
-![](./assets/price_vs_area.svg)  <!-- .element align="stretch" -->
+`sns.jointplot(x=area, y=price, alpha=0.33)`
+
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/price_vs_area.svg)  <!-- .element align="stretch" -->
 
 ---
 <!-- .slide style="text-align:left;" -->
@@ -244,25 +226,26 @@ def evaluate(slope, area, true_price):
 ```
 
 ---
-<!-- .slide style="text-align:left;font-size:80%;" -->
+<!-- .slide style="text-align:left;font-size:75%;" -->
 
 ## Linear Regression
 - Recall our prediction is given by $\textcolor{#63ff5b}{y} = \textcolor{#F92672}{m}\cdot \textcolor{#00CCFF}{x}$, where:
-	- $\textcolor{#F92672}{m}$ is the <span style="color:#F92672;">**slope**</span> (randomly initialized)
-	- $\textcolor{#00CCFF}{x}$ is the <span style="color:#00CCFF;">input area</span>
-	- $\textcolor{#63ff5b}{y}$ is the <span style="color:#63ff5b;">predicted price</span>
+  - $\textcolor{#F92672}{m}$ is the <span style="color:#F92672;">**slope**</span> (randomly initialized)
+  - $\textcolor{#FD971F}{\hat{y}}$ is the <span style="color:#FD971F">true price</span>
+  - $\textcolor{#63ff5b}{y}$ is the <span style="color:#63ff5b;">predicted price</span>
+  - $\textcolor{#00CCFF}{x}$ is the <span style="color:#00CCFF;">input area</span>
+  - $\textcolor{#AE81FF}{\alpha}$ is the <span style="color:#AE81FF">learning rate</span>
 
-- We update our slope $m$ using the update policy:
+
+- We update our slope $\textcolor{#f92672}{m}$ using the update policy:
   $$
   \begin{align}
-  \textcolor{#F92672}{m} &\gets  \textcolor{#F92672}{m} - \textcolor{#AE81FF}{\alpha} \,\nabla\, \delta\left(\textcolor{#63ff5b}{y}, \textcolor{#FFFF00}{\hat{y}}\right) \\
-  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FFFF00}{\hat{y}}\right)\cdot \frac{\partial \textcolor{#63ff5b}{y_{i}}}{\partial \textcolor{#F92672}{m}} \\
-  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n}\sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FFFF00}{\hat{y}}\right)\cdot \textcolor{#00CCFF}{x}
+  \textcolor{#F92672}{m} &\gets  \textcolor{#F92672}{m} - \textcolor{#AE81FF}{\alpha} \,\nabla\, \delta\left(\textcolor{#63ff5b}{y}, \textcolor{#FD971F}{\hat{y}}\right) \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \nabla\left\{\sum_{i=1}^{n} \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)^{2}\right\} \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n} \sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)\cdot \frac{\partial \textcolor{#63ff5b}{y_{i}}}{\partial \textcolor{#F92672}{m}} \\
+  & = \textcolor{#F92672}{m} - \frac{\textcolor{#AE81FF}{\alpha}}{n}\sum_{i=1}^{n} 2 \left(\textcolor{#63ff5b}{y_{i}} - \textcolor{#FD971F}{\hat{y}}\right)\cdot \textcolor{#00CCFF}{x_{i}}
   \end{align}
   $$
-  here:
-  - $\textcolor{#FFFF00}{\hat{y}}$ is the <span style="color:#FFFF00">true price</span>
-  - $\textcolor{#AE81FF}{\alpha}$ is the <span style="color:#AE81FF">learning rate</span>
 
 ---
 <!-- .slide style="text-align:left;" -->
@@ -289,16 +272,13 @@ def learn(
 - Each application of the `learn` function updates the slope and the `learning_rate` dampens that update.
 	- This iterative method helps to find the value of $x$ that _minimizes_ the gradient $\tfrac{df}{dx}$.
 - The `learning_rate` controls the size of the update step when updating $x$.
-	- If **too large**, you may miss the minimum
-	- If **too small**, you may never reach it
-
-
-![](./assets/learning-rate.svg) <!-- .element align="stretch" -->
+	
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/learning-rate.svg) <!-- .element align="stretch" -->
 
 ---
 ## Linear Regression
 
-![](./assets/best-fit.svg) <!-- .element align="stretch" -->
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/best-fit.svg) <!-- .element align="stretch" -->
 
 ---
 
@@ -306,31 +286,93 @@ def learn(
 # <span style="border-bottom:8px solid #F92672;">Data Clustering</span>
 
 ---
-# Data Clustering</span>
+# Data Clustering
 
-![](./assets/clusters2d.svg) <!-- .element align="stretch" -->
-
-</div>
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/clusters2d.svg) <!-- .element align="stretch" -->
 
 ---
 <!-- .slide style="text-align:left;font-size:80%;" -->
 
 ## Data Clustering
 
-<div align="center" style="font-size:0.8em;">
-
 > [!info] Normalization
 > Always a good idea to normalize your data
 
+![](https://raw.githubusercontent.com/saforem2/ATPESC-StatisticalLearning/main/docs/assets/clusters-normalized.svg)  <!-- .element align="stretch" -->
+
+---
+<!-- .slide style="text-align:left;" -->
+
+# <span style="border-bottom: 8px solid #63ff5b;">K-Means Clustering</span>
+
+<div id="note" style="background-color:#63ff5b20;padding-right:10%;">
+
+- **Goal:** Partition $n$ observations into $k$ clusters in which each observation belongs to the cluster with the nearest mean.
+
 </div>
 
-```python
-from sklearn.preprocessing import StandardScaler
-xn = StandardScaler().fit_transform(x)
-```
+<grid drag="100 60" drop="bottom" flow="row" align="stretch" style="margin-left:2%;margin-right:2%;">
+![](https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step1.svg)
+![](https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step2.svg)
+![](https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step3.svg)
+![](https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step4.svg)
+</grid>
 
-![](./assets/clusters-normalized.svg)  <!-- .element align="stretch" -->
+---
 
+<div style="text-align:left;">
+
+# K-Means: Step 1
+1. $k$ initial means (in this case, $k=3$) are randomly generated within the data domain (shown in color)
+
+</div>
+
+<img src="https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step1.svg" width="50%;"> <!-- .element align="stretch" -->
+
+---
+
+<div style="text-align:left;font-size:0.8em;">
+
+# K-Means: Step 2
+
+2. Calculate distance to each centroid:[^voroni]
+	1. $k$ clusters are created by associating every observation with the nearest mean.
+	2. Find nearest cluster for each point.
+
+</div>
+
+<img src="https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step2.svg" width="33%"> <!-- .element align="stretch" -->
+
+[^voroni]: The partitions here represent the Voroni diagram generated by the means
+
+---
+
+<div style="text-align:left;">
+
+# K-Means: Step 3
+- Calculate the new centroids
+	- The **centroid** of each of the $k$ clusters becomes the new mean
+
+</div>
+
+<img src="https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step3.svg" width="50%"> <!-- .element align="stretch" -->
+
+---
+
+# K-Means: Step 4
+
+Repeat until convergence
+
+<img src="https://raw.githubusercontent.com/saforem2/ATPESC_MachineLearning/master/00_statisticalLearning/assets/atpesc-k-means-step4.svg" width="50%"> <!-- .element align="stretch" -->
+
+---
+
+# <span style="border-bottom:8px solid #FD971F">Hands-On / Live Demo</span>
+
+- 📊 [slides](https://saforem2.github.io/ATPESC-StatisticalLearning)
+- [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> `argonne-lcf/ATPESC_MachineLearning/`](https://github.com/argonne-lcf/ATPESC_MachineLearning) <!-- .element style="color:font-weight:600" -->
+	- [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> `00_statisticalLearning`](https://github.com/argonne-lcf/ATPESC_MachineLearning) <!-- .element style="color:font-weight:600" -->
+	- 📕 [`statistical_learning.ipynb`](https://github.com/saforem2/ATPESC_MachineLearning/blob/master/00_statisticalLearning/src/atpesc/notebooks/statistical_learning.ipynb)
 
 <style>
 
@@ -400,7 +442,7 @@ xn = StandardScaler().fit_transform(x)
 .reveal h3,
 .reveal h4 {
     margin: var(--r-heading-margin);
-    color: var(--r-heading-color);
+    color: #E0E0E0;
     font-family: var(--r-heading-font);
     line-height: var(--r-heading-line-height);
     word-spacing: var(--r-heading-word-spacing);
@@ -590,7 +632,7 @@ xn = StandardScaler().fit_transform(x)
     color: #63FF51;
 }
 #yellow {
-    color: #FFFF00;
+    color: #FD971F;
 }
 #lightpink {
     color: #E64980;
@@ -626,7 +668,7 @@ xn = StandardScaler().fit_transform(x)
 #mark {
     margin: auto;
     padding: auto;
-    background-color: #FFFF00;
+    background-color: #FD971F;
     color: #1c1c1c;
     font-weight: 700;
     border-radius: 7px;
@@ -651,6 +693,7 @@ xn = StandardScaler().fit_transform(x)
 .horizontal_dotted_line{
   border-bottom: 2px dotted gray;
 } 
+
 .footer {
   font-size: 60%;
   vertical-align:bottom;
