@@ -16,8 +16,8 @@ highlightTheme: 'monokai'
 </grid>
 
 <grid drop="0 50" drag="100 25" style="line-height:0.6em;" align="top">
-Sam Foreman <!-- .element style="font-size:1.25em;font-weight:600;color:#E0E0E0!important" -->
-<br><span style="color:#666666;font-size:0.5em;line-height:0.8em;">2022-08-12</span>
+<span style="font-size:1.25em;color:#E0E0E0">Sam Foreman</span>
+<br><span style="color:#666666;line-height:0.8em;">2022-08-12</span>
 
 </grid>
 
