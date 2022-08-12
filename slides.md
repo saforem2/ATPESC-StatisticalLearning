@@ -10,9 +10,9 @@ highlightTheme: 'monokai'
 <!-- .slide style="vertical-align:bottom;" -->
 
 <grid drop="5 20" drag="90 25" style="font-family:'graze-pro';background-color:#303030;border-radius:8px!important;padding:auto;align:center;font-size=0.8em!important;">
-# Statistical Learning<!-- .element style="color:#F8F8F8;" -->
+# Statistical Learning <!-- .element style="color:#F8F8F8;" -->
 
-#### [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> ATPESC ML 2022](https://github.com/argonne-lcf/ATPESC_MachineLearning) <!-- .element style="color:font-weight:600" -->
+#### [<i class="fab fa-github fa-1x" alt="`fas:Github`"/> ATPESC ML 2022](https://github.com/argonne-lcf/ATPESC_MachineLearning)
 </grid>
 
 <grid drop="0 50" drag="100 25" style="line-height:0.6em;" align="top">
